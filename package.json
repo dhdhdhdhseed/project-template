@@ -1,16 +1,7 @@
 {
   "name": "v3-admin-vite",
-  "version": "4.5.1",
-  "description": "一个免费开源的中后台管理系统基础解决方案，基于 Vue3、TypeScript、Element Plus、Pinia 和 Vite 等主流技术",
-  "author": {
-    "name": "pany",
-    "email": "939630029@qq.com",
-    "url": "https://github.com/pany-ang"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/un-pany/v3-admin-vite.git"
-  },
+  "version": "1.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -66,7 +57,6 @@
     "prettier": "3.3.3",
     "sass": "1.78.0",
     "typescript": "5.6.3",
-    "unocss": "0.63.4",
     "vite": "5.4.8",
     "vite-plugin-svg-icons": "2.0.1",
     "vite-svg-loader": "5.1.0",
@@ -98,6 +88,5 @@
     "element-plus-admin",
     "ts",
     "typescript"
-  ],
-  "license": "MIT"
+  ]
 }

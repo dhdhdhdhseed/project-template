@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { useFetchSelect } from "@/hooks/useFetchSelect"
-import { getSelectDataApi } from "@/api/hook-demo/use-fetch-select"
+import { getSelectDataApi } from "@/api/demo/index"
 
 const { loading, options, value } = useFetchSelect({
-  api: getSelectDataApi
+  api: getSelectDataApi,
+  params: {test:'111'}
 })
 </script>
 

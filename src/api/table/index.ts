@@ -27,11 +27,24 @@ export function updateTableDataApi(data: Table.CreateOrUpdateTableRequestData) {
   })
 }
 
-/** 查 */
-export function getTableDataApi(params: Table.TableRequestData) {
-  return request<Table.TableResponseData>({
-    url: "table",
-    method: "get",
-    params
-  })
+// 获取用户列表
+export function getUserListApi(params: Table.UserListeRequestData) {
+  if (Math.random() < 0.5) {
+    return new Promise<any>((resolve, reject) => {
+      // 模拟接口响应时间 2s
+      setTimeout(() => {
+        resolve(request<Table.UserListResponseData>({
+          url: "table",
+          method: "get",
+          params
+        }))
+      }, 2000)
+    })
+  } else {
+    return request<Table.UserListResponseData>({
+      url: "table",
+      method: "get",
+      params
+    })
+  }
 }

@@ -4,7 +4,13 @@
  * 也可以打开浏览器控制台选择元素，查看要覆盖的变量名
  */
 
-/** 基础颜色 */
+/** dark 主题基础颜色 */
+html.dark {
+  /** color-primary */
+  /* --el-color-primary: #00bb99; */
+}
+
+/** dark-blue 主题基础颜色 */
 html.dark-blue {
   /** color-primary */
   --el-color-primary: #00bb99;

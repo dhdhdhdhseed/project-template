@@ -4,18 +4,14 @@ export interface CreateOrUpdateTableRequestData {
   password?: string
 }
 
-export interface TableRequestData {
-  /** 当前页码 */
+// region getUserListApi
+export interface UserListeRequestData {
   currentPage: number
-  /** 查询条数 */
   size: number
-  /** 查询参数：用户名 */
-  username?: string
-  /** 查询参数：手机号 */
-  phone?: string
+  username?: string // 用户名称
+  phone?: string // 手机号
 }
-
-export interface TableData {
+export interface UserInfo {
   createTime: string
   email: string
   id: string
@@ -24,8 +20,8 @@ export interface TableData {
   status: boolean
   username: string
 }
-
-export type TableResponseData = ApiResponseData<{
-  list: TableData[]
+export type UserListResponseData = ApiResponseData<{
+  list: UserInfo[]
   total: number
 }>
+// endregion

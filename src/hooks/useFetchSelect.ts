@@ -12,13 +12,17 @@ interface SelectOption {
 /** 接口响应格式 */
 type ApiData = ApiResponseData<SelectOption[]>
 
-/** 入参格式，暂时只需要传递 api 函数即可 */
+/** 入参格式
+ * api 数据接口
+ * params 接口参数
+ */
 interface FetchSelectProps {
-  api: () => Promise<ApiData>
+  api: (params: any) => Promise<ApiData>,
+  params: any
 }
 
 export function useFetchSelect(props: FetchSelectProps) {
-  const { api } = props
+  const { api, params } = props
 
   const loading = ref<boolean>(false)
   const options = ref<SelectOption[]>([])
@@ -28,7 +32,7 @@ export function useFetchSelect(props: FetchSelectProps) {
   const loadData = () => {
     loading.value = true
     options.value = []
-    api()
+    api(params)
       .then((res) => {
         options.value = res.data
       })

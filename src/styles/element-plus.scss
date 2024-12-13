@@ -5,6 +5,15 @@
   background-color: var(--el-bg-color);
 }
 
+// 表单
+.el-form{
+  background-color: var(--el-bg-color);
+}
+// 骨架框
+.el-skeleton{
+  background-color: var(--el-bg-color);
+}
+
 // 分页
 .el-pagination {
   // 参考 Bootstrap 的响应式设计 WIDTH = 768

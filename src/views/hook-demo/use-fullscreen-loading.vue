@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useFullscreenLoading } from "@/hooks/useFullscreenLoading"
-import { getSuccessApi, getErrorApi } from "@/api/hook-demo/use-fullscreen-loading"
+import { getSuccessApi, getErrorApi } from "@/api/demo/index"
 import { ElMessage } from "element-plus"
 
 const svg = `
@@ -26,12 +26,12 @@ const querySuccess = async () => {
   // 1. getSuccessApi 是一个函数而非函数调用
   // 2. 如需给 getSuccessApi 函数传递参数，请在后面的括号中进行（真正的 getSuccessApi 调用）
   const res = await useFullscreenLoading(getSuccessApi)([2, 3, 3])
-  ElMessage.success(`${res.message}，传参为 ${res.data.list.toString()}`)
+  ElMessage.success(`${res.message}，传参为 ${res.data}`)
 }
 
 const queryError = async () => {
   try {
-    await useFullscreenLoading(getErrorApi, options)()
+    await useFullscreenLoading(getErrorApi, options)({})
   } catch (err: any) {
     ElMessage.error(err.message)
   }

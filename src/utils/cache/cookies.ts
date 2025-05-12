@@ -1,14 +1,14 @@
 /** 统一处理 Cookie */
 
-import CacheKey from "@/constants/cache-key"
-import Cookies from "js-cookie"
+import { CacheKey } from '@/config/constants'
+import Cookies from 'js-cookie'
 
-export const getToken = () => {
+export function getToken() {
   return Cookies.get(CacheKey.TOKEN)
 }
-export const setToken = (token: string) => {
+export function setToken(token: string) {
   Cookies.set(CacheKey.TOKEN, token)
 }
-export const removeToken = () => {
+export function removeToken() {
   Cookies.remove(CacheKey.TOKEN)
 }

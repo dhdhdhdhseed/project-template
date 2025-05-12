@@ -3,12 +3,12 @@ export interface ListItem {
   title: string
   datetime?: string
   description?: string
-  status?: "primary" | "success" | "info" | "warning" | "danger"
+  status?: 'primary' | 'success' | 'info' | 'warning' | 'danger'
   extra?: string
 }
 
 export const notifyData: ListItem[] = [
- 
+
 ]
 
 export const messageData: ListItem[] = [

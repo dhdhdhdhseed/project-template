@@ -6,7 +6,8 @@ interface RouteSettings {
    * 2. 假如项目不需要根据不同的用户来显示不同的页面，则应该将 isDynamicImport: false
    */
   isDynamicImport: boolean
-  /** 当动态路由功能关闭时：
+  /**
+   * 当动态路由功能关闭时：
    * 1. 应该将所有路由都写到常驻路由里面（表明所有登录的用户能访问的页面都是一样的）
    * 2. 系统自动给当前登录用户赋值一个没有任何作用的默认角色
    */
@@ -20,9 +21,9 @@ interface RouteSettings {
 }
 
 const routeSettings: RouteSettings = {
-  isDynamicImport: true,
-  defaultRoles: ["DEFAULT_ROLE"],
-  thirdLevelRouteCache: false
+  isDynamicImport: false,
+  defaultRoles: ['DEFAULT_ROLE'],
+  thirdLevelRouteCache: false,
 }
 
 export default routeSettings

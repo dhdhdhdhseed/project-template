@@ -1,18 +1,18 @@
-// core
-import { createApp } from "vue"
-import App from "@/App.vue"
-import store from "@/store"
-import router from "@/router"
-import "@/router/permission"
+import App from '@/App.vue'
+import { loadDirectives } from '@/directives'
 // load
-import { loadSvg } from "@/icons"
-import { loadPlugins } from "@/plugins"
-import { loadDirectives } from "@/directives"
+import { loadSvg } from '@/icons'
+import { loadPlugins } from '@/plugins'
+import router from '@/router'
+import store from '@/store'
+// core
+import { createApp } from 'vue'
+import '@/router/permission'
 // css
-import "normalize.css"
-import "element-plus/dist/index.css"
-import "element-plus/theme-chalk/dark/css-vars.css"
-import "@/styles/index.scss"
+import 'normalize.css'
+import 'element-plus/dist/index.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
+import '@/styles/index.scss'
 
 const app = createApp(App)
 
@@ -25,5 +25,5 @@ loadDirectives(app)
 
 app.use(store).use(router)
 router.isReady().then(() => {
-  app.mount("#app")
+  app.mount('#app')
 })

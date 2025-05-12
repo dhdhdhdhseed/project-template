@@ -1,18 +1,18 @@
 <script lang="ts" setup>
-import { computed } from "vue"
-import { useRoute } from "vue-router"
-import { useAppStore } from "@/store/modules/app"
-import { usePermissionStore } from "@/store/modules/permission"
-import { useSettingsStore } from "@/store/modules/settings"
-import SidebarItem from "./SidebarItem.vue"
-import Logo from "../Logo/index.vue"
-import { useDevice } from "@/hooks/useDevice"
-import { useLayoutMode } from "@/hooks/useLayoutMode"
-import { getCssVariableValue } from "@/utils"
+import { useDevice } from '@/hooks/useDevice'
+import { useLayoutMode } from '@/hooks/useLayoutMode'
+import { useAppStore } from '@/store/modules/app'
+import { usePermissionStore } from '@/store/modules/permission'
+import { useSettingsStore } from '@/store/modules/settings'
+import { getCssVariableValue } from '@/utils'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import Logo from '../Logo/index.vue'
+import SidebarItem from './SidebarItem.vue'
 
-const v3SidebarMenuBgColor = getCssVariableValue("--v3-sidebar-menu-bg-color")
-const v3SidebarMenuTextColor = getCssVariableValue("--v3-sidebar-menu-text-color")
-const v3SidebarMenuActiveTextColor = getCssVariableValue("--v3-sidebar-menu-active-text-color")
+const v3SidebarMenuBgColor = getCssVariableValue('--v3-sidebar-menu-bg-color')
+const v3SidebarMenuTextColor = getCssVariableValue('--v3-sidebar-menu-text-color')
+const v3SidebarMenuActiveTextColor = getCssVariableValue('--v3-sidebar-menu-active-text-color')
 
 const { isMobile } = useDevice()
 const { isLeft, isTop } = useLayoutMode()
@@ -24,28 +24,30 @@ const settingsStore = useSettingsStore()
 const activeMenu = computed(() => {
   const {
     meta: { activeMenu },
-    path
+    path,
   } = route
-  return activeMenu ? activeMenu : path
+  return activeMenu || path
 })
-const noHiddenRoutes = computed(() => permissionStore.routes.filter((item) => !item.meta?.hidden))
+const noHiddenRoutes = computed(() => permissionStore.routes.filter(item => !item.meta?.hidden))
+console.log(noHiddenRoutes.value)
+
 const isCollapse = computed(() => !appStore.sidebar.opened)
 const isLogo = computed(() => isLeft.value && settingsStore.showLogo)
 const backgroundColor = computed(() => (isLeft.value ? v3SidebarMenuBgColor : undefined))
 const textColor = computed(() => (isLeft.value ? v3SidebarMenuTextColor : undefined))
 const activeTextColor = computed(() => (isLeft.value ? v3SidebarMenuActiveTextColor : undefined))
 const sidebarMenuItemHeight = computed(() => {
-  return !isTop.value ? "var(--v3-sidebar-menu-item-height)" : "var(--v3-navigationbar-height)"
+  return !isTop.value ? 'var(--v3-sidebar-menu-item-height)' : 'var(--v3-navigationbar-height)'
 })
 const sidebarMenuHoverBgColor = computed(() => {
-  return !isTop.value ? "var(--v3-sidebar-menu-hover-bg-color)" : "transparent"
+  return !isTop.value ? 'var(--v3-sidebar-menu-hover-bg-color)' : 'transparent'
 })
 const tipLineWidth = computed(() => {
-  return !isTop.value ? "2px" : "0px"
+  return !isTop.value ? '2px' : '0px'
 })
 // 当为顶部模式时隐藏垂直滚动条
 const hiddenScrollbarVerticalBar = computed(() => {
-  return isTop.value ? "none" : "block"
+  return isTop.value ? 'none' : 'block'
 })
 </script>
 

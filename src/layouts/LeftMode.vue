@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { computed } from "vue"
-import { storeToRefs } from "pinia"
-import { useAppStore } from "@/store/modules/app"
-import { useSettingsStore } from "@/store/modules/settings"
-import { AppMain, NavigationBar, Sidebar, TagsView } from "./components"
-import { useDevice } from "@/hooks/useDevice"
+import { useDevice } from '@/hooks/useDevice'
+import { useAppStore } from '@/store/modules/app'
+import { useSettingsStore } from '@/store/modules/settings'
+import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
+import { AppMain, NavigationBar, Sidebar, TagsView } from './components'
 
 const { isMobile } = useDevice()
 const appStore = useAppStore()
@@ -17,12 +17,12 @@ const layoutClasses = computed(() => {
     hideSidebar: !appStore.sidebar.opened,
     openSidebar: appStore.sidebar.opened,
     withoutAnimation: appStore.sidebar.withoutAnimation,
-    mobile: isMobile.value
+    mobile: isMobile.value,
   }
 })
 
 /** 用于处理点击 mobile 端侧边栏遮罩层的事件 */
-const handleClickOutside = () => {
+function handleClickOutside() {
   appStore.closeSidebar(false)
 }
 </script>

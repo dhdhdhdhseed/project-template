@@ -1,5 +1,5 @@
-import { getConfigLayout } from "@/utils/cache/local-storage"
-import { LayoutModeEnum } from "@/constants/app-key"
+import { LayoutModeEnum } from '@/config/constants'
+import { getConfigLayout } from '@/utils/cache/local-storage'
 
 /** 项目配置类型 */
 export interface LayoutSettings {
@@ -48,7 +48,7 @@ const defaultSettings: LayoutSettings = {
   cacheTagsView: false,
   showWatermark: true,
   showGreyMode: false,
-  showColorWeakness: false
+  showColorWeakness: false,
 }
 
 /** 项目配置 */

@@ -1,8 +1,10 @@
-import { type RouteRecordRaw, createRouter } from "vue-router"
-import { history, flatMultiLevelRoutes } from "./helper"
-import routeSettings from "@/config/route"
+import type { RouteRecordRaw } from 'vue-router'
+import routeSettings from '@/config/route'
+import { createRouter } from 'vue-router'
+import { flatMultiLevelRoutes, history } from './helper'
+import routes from './routes'
 
-const Layouts = () => import("@/layouts/index.vue")
+const Layouts = () => import('@/layouts/index.vue')
 
 /**
  * 常驻路由
@@ -10,131 +12,73 @@ const Layouts = () => import("@/layouts/index.vue")
  */
 export const constantRoutes: RouteRecordRaw[] = [
   {
-    path: "/redirect",
+    path: '/redirect',
     component: Layouts,
     meta: {
-      hidden: true
+      hidden: true,
     },
     children: [
       {
-        path: ":path(.*)",
-        component: () => import("@/views/redirect/index.vue")
-      }
-    ]
-  },
-  {
-    path: "/403",
-    component: () => import("@/views/error-page/403.vue"),
-    meta: {
-      hidden: true
-    }
-  },
-  {
-    path: "/404",
-    component: () => import("@/views/error-page/404.vue"),
-    meta: {
-      hidden: false
-    },
-    alias: "/:pathMatch(.*)*"
-  },
-  {
-    path: "/login",
-    component: () => import("@/views/login/index.vue"),
-    meta: {
-      hidden: true // 是否在菜单栏上隐藏
-    }
-  },
-  {
-    path: "/",
-    component: Layouts,
-    redirect: "/dashboard",
-    children: [
-      {
-        path: "dashboard",
-        component: () => import("@/views/dashboard/index.vue"),
-        name: "Dashboard",
-        meta: {
-          title: "首页",
-          svgIcon: "dashboard",
-          affix: true
-        }
-      }
-    ]
-  },
-  {
-    path: "/table",
-    component: Layouts,
-    redirect: "/table/element-plus",
-    name: "Table",
-    meta: {
-      title: "表格",
-      elIcon: "Grid",
-      alwaysShow: true // 将始终显示根菜单
-    },
-    children: [
-      {
-        path: "element-plus",
-        component: () => import("@/views/table/element-plus/index.vue"),
-        name: "ElementPlus",
-        meta: {
-          title: "Element Plus",
-          keepAlive: true
-        }
+        path: ':path(.*)',
+        component: () => import('@/views/redirect/index.vue'),
       },
-    ]
+    ],
   },
   {
-    path: "/hook-demo",
-    component: Layouts,
-    redirect: "/hook-demo/use-fetch-select",
-    name: "HookDemo",
+    path: '/403',
+    component: () => import('@/views/error-page/403.vue'),
     meta: {
-      title: "Hook",
-      elIcon: "Menu",
-      alwaysShow: true
+      hidden: true,
     },
-    children: [
-      {
-        path: "use-fetch-select",
-        component: () => import("@/views/hook-demo/use-fetch-select.vue"),
-        name: "UseFetchSelect",
-        meta: {
-          title: "获取接口数据"
-        }
-      },
-      {
-        path: "use-fullscreen-loading",
-        component: () => import("@/views/hook-demo/use-fullscreen-loading.vue"),
-        name: "UseFullscreenLoading",
-        meta: {
-          title: "全屏加载"
-        }
-      },
-      {
-        path: "use-watermark",
-        component: () => import("@/views/hook-demo/use-watermark.vue"),
-        name: "UseWatermark",
-        meta: {
-          title: "useWatermark"
-        }
-      }
-    ]
   },
   {
-    path: "/",
+    path: '/404',
+    component: () => import('@/views/error-page/404.vue'),
+    meta: {
+      hidden: true,
+    },
+    alias: '/:pathMatch(.*)*',
+  },
+  {
+    path: '/login',
+    component: () => import('@/views/login/index.vue'),
+    meta: {
+      hidden: true, // 是否在菜单栏上隐藏
+    },
+  },
+  // ...routes,
+  {
+    path: '/',
     component: Layouts,
-    redirect: "/test",
+    redirect: '/dashboard',
     children: [
       {
-        path: "test",
-        component: () => import("@/views/test/index.vue"),
-        name: "Test",
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index.vue'),
+        name: 'Dashboard',
         meta: {
-          title: "测试页面",
-          svgIcon: "dashboard",
-        }
-      }
-    ]
+          title: '首页',
+          svgIcon: 'dashboard',
+          affix: true,
+        },
+      },
+    ],
+  },
+  {
+    path: '/',
+    component: Layouts,
+    redirect: '/test',
+    children: [
+      {
+        path: 'test',
+        component: () => import('@/views/test/index.vue'),
+        name: 'Test',
+        meta: {
+          title: '测试页面',
+          svgIcon: 'dashboard',
+        },
+      },
+    ],
   },
 ]
 
@@ -145,102 +89,102 @@ export const constantRoutes: RouteRecordRaw[] = [
  */
 export const dynamicRoutes: RouteRecordRaw[] = [
   {
-    path: "/permission",
+    path: '/permission',
     component: Layouts,
-    redirect: "/permission/page",
-    name: "Permission",
+    redirect: '/permission/page',
+    name: 'Permission',
     meta: {
-      title: "权限",
-      svgIcon: "lock",
-      roles: ["admin", "editor"], // 可以在根路由中设置角色
-      alwaysShow: true // 将始终显示根菜单
+      title: '权限',
+      svgIcon: 'lock',
+      roles: ['admin', 'editor'], // 可以在根路由中设置角色
+      alwaysShow: true, // 将始终显示根菜单
     },
     children: [
       {
-        path: "page",
-        component: () => import("@/views/permission/page.vue"),
-        name: "PagePermission",
+        path: 'page',
+        component: () => import('@/views/permission/page.vue'),
+        name: 'PagePermission',
         meta: {
-          title: "页面级",
-          roles: ["admin"] // 或者在子导航中设置角色
-        }
+          title: '页面级',
+          roles: ['admin'], // 或者在子导航中设置角色
+        },
       },
       {
-        path: "directive",
-        component: () => import("@/views/permission/directive.vue"),
-        name: "DirectivePermission",
+        path: 'directive',
+        component: () => import('@/views/permission/directive.vue'),
+        name: 'DirectivePermission',
         meta: {
-          title: "按钮级" // 如果未设置角色，则表示：该页面不需要权限，但会继承根路由的角色
-        }
-      }
-    ]
+          title: '按钮级', // 如果未设置角色，则表示：该页面不需要权限，但会继承根路由的角色
+        },
+      },
+    ],
   },
   {
-    path: "/",
+    path: '/',
     component: Layouts,
-    redirect: "/dynamicRoutes",
+    redirect: '/dynamicRoutes',
     meta: {
-      title: "动态路由",
-      svgIcon: "menu",
-      roles: ["admin"]
+      title: '动态路由',
+      svgIcon: 'menu',
+      roles: ['admin'],
     },
     children: [
       {
-        path: "errorPage",
+        path: 'errorPage',
         component: Layouts,
         meta: {
-          title: "错误页面",
+          title: '错误页面',
         },
         children: [
           {
-            path: "404",
-            component: () => import("@/views/error-page/404.vue"),
-            name: "404",
+            path: '404',
+            component: () => import('@/views/error-page/404.vue'),
+            name: '404',
             meta: {
-              title: "404页面",
-            }
+              title: '404页面',
+            },
           },
           {
-            path: "403",
-            component: () => import("@/views/error-page/403.vue"),
-            name: "403",
+            path: '403',
+            component: () => import('@/views/error-page/403.vue'),
+            name: '403',
             meta: {
-              title: "403页面",
-            }
-          }
-        ]
+              title: '403页面',
+            },
+          },
+        ],
       },
       {
-        path: "link",
+        path: 'link',
         meta: {
-          title: "外链",
+          title: '外链',
         },
         children: [
           {
-            path: "https://juejin.cn/post/7089377403717287972",
+            path: 'https://juejin.cn/post/7089377403717287972',
             component: () => { },
-            name: "Link1",
+            name: 'Link1',
             meta: {
-              title: "中文文档"
-            }
+              title: '中文文档',
+            },
           },
           {
-            path: "https://juejin.cn/column/7207659644487139387",
+            path: 'https://juejin.cn/column/7207659644487139387',
             component: () => { },
-            name: "Link2",
+            name: 'Link2',
             meta: {
-              title: "新手教程"
-            }
-          }
-        ]
+              title: '新手教程',
+            },
+          },
+        ],
       },
-    ]
+    ],
   },
 ]
 
 const router = createRouter({
   history,
-  routes: routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(constantRoutes) : constantRoutes
+  routes: routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(constantRoutes) : constantRoutes,
 })
 
 /** 重置路由 */
@@ -253,7 +197,8 @@ export function resetRouter() {
         router.hasRoute(name) && router.removeRoute(name)
       }
     })
-  } catch {
+  }
+  catch {
     // 强制刷新浏览器也行，只是交互体验不是很好
     window.location.reload()
   }

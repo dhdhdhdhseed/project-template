@@ -1,50 +1,5 @@
-## 🚀 Development
+# Vue 3 + TypeScript + Vite
 
-```bash
-# configure
-1. installation of the recommended plugins in the .vscode directory
-2. node version 18.x or 20+
-3. pnpm version 8.x or latest
+This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-# clone
-git clone https://github.com/un-pany/v3-admin-vite.git
-
-# enter the project directory
-cd v3-admin-vite
-
-# install dependencies
-pnpm i
-
-# start the service
-pnpm dev
-```
-
-## ✔️ Preview
-
-```bash
-# stage environment
-pnpm preview:stage
-
-# prod environment
-pnpm preview:prod
-```
-
-## 📦️ Multi-environment packaging
-
-```bash
-# build the stage environment
-pnpm build:stage
-
-# build the prod environment
-pnpm build:prod
-```
-
-## 🔧 Code inspection
-
-```bash
-# code formatting
-pnpm lint
-
-# unit test
-pnpm test
-```
+Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).

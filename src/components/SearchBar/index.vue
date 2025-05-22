@@ -97,7 +97,6 @@ function handleReset() {
 <style scoped lang="scss">
 .comp-search-bar {
   width: 100%;
-  background: #fff;
 
   .left {
     flex: 1;

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import Notify from '@/components/Notify/index.vue'
 import Screenfull from '@/components/Screenfull/index.vue'
 import ThemeSwitch from '@/components/ThemeSwitch/index.vue'
 import { useDevice } from '@/hooks/useDevice'
@@ -20,7 +19,7 @@ const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const settingsStore = useSettingsStore()
-const { showNotify, showThemeSwitch, showScreenfull } = storeToRefs(settingsStore)
+const { showThemeSwitch, showScreenfull } = storeToRefs(settingsStore)
 
 /** 切换侧边栏 */
 function toggleSidebar() {
@@ -47,7 +46,6 @@ function logout() {
     <div class="right-menu">
       <Screenfull v-if="showScreenfull" class="right-menu-item" />
       <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />
-      <Notify v-if="showNotify" class="right-menu-item" />
       <el-dropdown class="right-menu-item">
         <div class="right-menu-avatar">
           <el-avatar :icon="UserFilled" :size="30" />

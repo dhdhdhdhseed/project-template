@@ -16,11 +16,9 @@ const {
   showLogo,
   fixedHeader,
   showFooter,
-  showNotify,
   showThemeSwitch,
   showScreenfull,
   cacheTagsView,
-  showWatermark,
   showGreyMode,
   showColorWeakness,
 } = storeToRefs(settingsStore)
@@ -31,11 +29,9 @@ const switchSettings = {
   '显示 Logo': showLogo,
   '固定 Header': fixedHeader,
   '显示页脚 Footer': showFooter,
-  '显示消息通知': showNotify,
   '显示切换主题按钮': showThemeSwitch,
   '显示全屏按钮': showScreenfull,
   '是否缓存标签栏': cacheTagsView,
-  '开启系统水印': showWatermark,
   '显示灰色模式': showGreyMode,
   '显示色弱模式': showColorWeakness,
 }

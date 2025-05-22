@@ -71,6 +71,7 @@ const constantRoutes: RouteRecordRaw[] = [
         name: 'dataList',
         meta: {
           title: '数据列表',
+          keepAlive: true,
         },
       },
       {

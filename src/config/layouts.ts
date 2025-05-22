@@ -18,7 +18,7 @@ export interface LayoutSettings {
   showThemeSwitch: boolean
   /** 是否显示全屏按钮 */
   showScreenfull: boolean
-  /** 是否缓存标签栏 */
+  /** 是否缓存标签栏 (用户退出登录) */
   cacheTagsView: boolean
   /** 是否显示灰色模式 */
   showGreyMode: boolean

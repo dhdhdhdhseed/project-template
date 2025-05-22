@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useUserStore } from '@/store/modules/user'
+import { useUserStore } from '@/store'
 import Admin from './components/Admin.vue'
 import Editor from './components/Editor.vue'
 

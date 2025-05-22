@@ -1,5 +1,5 @@
 import { useRouteListener } from '@/mitt/routeListener'
-import { useAppStore } from '@/store/modules/app'
+import { useAppStore } from '@/store'
 import { onBeforeMount, onBeforeUnmount, onMounted } from 'vue'
 
 /** 参考 Bootstrap 的响应式设计将最大移动端宽度设置为 992 */

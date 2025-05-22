@@ -2,13 +2,13 @@ import { createPinia } from 'pinia'
 import persist from 'pinia-plugin-persistedstate'
 
 const pinia = createPinia()
-// 使用持久化存储插件
+// 使用持久化存储插件 (需要在setup外访问的store不适用持久化存储插件，请使用 localStorage)
 pinia.use(persist)
 
 export default pinia
 
 // 统一导出
-export * from './modules/app'
-export * from './modules/settings'
-export * from './modules/tags-view'
-export * from './modules/user'
+export * from './modules/appStore'
+export * from './modules/settingsStore'
+export * from './modules/tagsViewStore'
+export * from './modules/userStore'

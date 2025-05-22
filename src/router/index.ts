@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import isWhiteList from '@/config/white-list'
 import { useTitle } from '@/hooks/useTitle'
 import { setRouteChange } from '@/mitt/routeListener'
-import { useUserStoreHook } from '@/store/modules/user'
+import { useUserStoreHook } from '@/store'
 import { getToken } from '@/utils/cache/cookies'
 import { ElMessage } from 'element-plus'
 import NProgress from 'nprogress'
@@ -20,7 +20,6 @@ NProgress.configure({ showSpinner: false })
 // 动态路由
 export const dynamicRoutes: RouteRecordRaw[] = [
 ]
-
 const router = createRouter({
   history: import.meta.env.VITE_ROUTER_HISTORY === 'hash'
     ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH)
@@ -47,7 +46,7 @@ router.beforeEach(async (to, _from, next) => {
     return next({ path: '/' })
   }
 
-  // 如果用户已经登录并获取登录信息
+  // 如果用户已经登录(存在用户信息)，直接进入
   if (userStore.username) {
     return next()
   }
@@ -71,22 +70,4 @@ router.afterEach((to) => {
   NProgress.done()
 })
 // endregion
-
-/** 重置路由 */
-export function resetRouter() {
-  // 注意：所有动态路由路由必须带有 Name 属性，否则可能会不能完全重置干净
-  try {
-    router.getRoutes().forEach((route) => {
-      const { name, meta } = route
-      if (name && meta.roles?.length) {
-        router.hasRoute(name) && router.removeRoute(name)
-      }
-    })
-  }
-  catch {
-    // 强制刷新浏览器也行，只是交互体验不是很好
-    window.location.reload()
-  }
-}
-
 export default router

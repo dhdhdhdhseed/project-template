@@ -1,5 +1,5 @@
 import type { VNode } from 'vue'
-import { useTagsViewStore } from '@/store/modules/tags-view'
+import { useTagsViewStore } from '@/store'
 import { cloneVNode, createVNode, defineComponent, h, KeepAlive } from 'vue'
 import { useRoute } from 'vue-router'
 

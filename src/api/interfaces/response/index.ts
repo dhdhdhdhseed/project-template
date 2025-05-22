@@ -1,10 +1,9 @@
+// region 用户相关
 export interface CreateOrUpdateTableRequestData {
   id?: string
   username: string
   password?: string
 }
-
-// region getUserListApi
 export interface UserListeRequestData {
   currentPage: number
   size: number
@@ -24,4 +23,10 @@ export type UserListResponseData = ApiResponseData<{
   list: UserInfo[]
   total: number
 }>
+
+export type LoginCodeResponseData = ApiResponseData<string>
+
+export type LoginResponseData = ApiResponseData<{ token: string }>
+
+export type UserInfoResponseData = ApiResponseData<{ username: string, roles: string[] }>
 // endregion

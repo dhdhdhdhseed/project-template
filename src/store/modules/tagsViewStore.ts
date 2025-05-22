@@ -4,7 +4,7 @@ import { ref } from 'vue'
 
 export type TagView = Partial<RouteLocationNormalized>
 
-export const useTagsViewStore = defineStore('tags-view', () => {
+export const useTagsViewStore = defineStore('tagsViewStore', () => {
   const visitedViews = ref<TagView[]>([])
   const cachedViews = ref<string[]>([])
 

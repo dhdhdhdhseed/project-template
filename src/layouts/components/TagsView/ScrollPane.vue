@@ -2,7 +2,7 @@
 import type { RouterLink } from 'vue-router'
 import Screenfull from '@/components/Screenfull/index.vue'
 import { useRouteListener } from '@/mitt/routeListener'
-import { useSettingsStore } from '@/store/modules/settings'
+import { useSettingsStore } from '@/store'
 import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
 import { ElScrollbar } from 'element-plus'
 import { nextTick, ref } from 'vue'

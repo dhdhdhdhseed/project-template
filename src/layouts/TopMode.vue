@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useSettingsStore } from '@/store/modules/settings'
+import { useSettingsStore } from '@/store'
 import { storeToRefs } from 'pinia'
 import { AppMain, Logo, NavigationBar, TagsView } from './components'
 

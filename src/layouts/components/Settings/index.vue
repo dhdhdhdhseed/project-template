@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useLayoutMode } from '@/hooks/useLayoutMode'
-import { useSettingsStore } from '@/store/modules/settings'
+import { useSettingsStore } from '@/store'
 import { resetConfigLayout } from '@/utils'
 import { Refresh } from '@element-plus/icons-vue'
 import { storeToRefs } from 'pinia'

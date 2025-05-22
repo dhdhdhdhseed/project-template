@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useDevice } from '@/hooks/useDevice'
 import { useLayoutMode } from '@/hooks/useLayoutMode'
-import { useSettingsStore } from '@/store/modules/settings'
+import { useSettingsStore } from '@/store'
 import { getCssVariableValue, setCssVariableValue } from '@/utils'
 import { storeToRefs } from 'pinia'
 import { computed, watchEffect } from 'vue'

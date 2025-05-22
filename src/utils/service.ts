@@ -1,5 +1,5 @@
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
-import { useUserStoreHook } from '@/store/modules/user'
+import { useUserStoreHook } from '@/store'
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { get, merge } from 'lodash-es'
@@ -28,7 +28,9 @@ function createService() {
       const apiData = response.data
       // 二进制数据则直接返回
       const responseType = response.request?.responseType
-      if (responseType === 'blob' || responseType === 'arraybuffer') { return apiData }
+      if (responseType === 'blob' || responseType === 'arraybuffer') {
+        return apiData
+      }
       // 这个 code 是和后端约定的业务 code
       const code = apiData.code
       // 如果没有 code, 代表这不是项目后端开发的 api

@@ -1,15 +1,11 @@
 import type { LoginRequestData } from '@/api/interfaces'
 import { getUserInfoApi, loginApi } from '@/api'
-import routeSettings from '@/config/route'
-import { resetRouter } from '@/router'
-import store from '@/store'
+import store, { useSettingsStore, useTagsViewStore } from '@/store'
 import { getToken, removeToken, setToken } from '@/utils/cache/cookies'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { useSettingsStore } from './settings'
-import { useTagsViewStore } from './tags-view'
 
-export const useUserStore = defineStore('user', () => {
+export const useUserStore = defineStore('userStore', () => {
   const token = ref<string>(getToken() || '')
   const roles = ref<string[]>([])
   const username = ref<string>('')
@@ -28,7 +24,7 @@ export const useUserStore = defineStore('user', () => {
     const { data } = await getUserInfoApi()
     username.value = data.username
     // 验证返回的 roles 是否为一个非空数组，否则塞入一个没有任何作用的默认角色，防止路由守卫逻辑进入无限循环
-    roles.value = data.roles?.length > 0 ? data.roles : routeSettings.defaultRoles
+    roles.value = data.roles?.length > 0 ? data.roles : ['DEFAULT_ROLE']
   }
 
   /** 重置 Visited Views 和 Cached Views */
@@ -43,7 +39,6 @@ export const useUserStore = defineStore('user', () => {
     removeToken()
     token.value = ''
     roles.value = []
-    resetRouter()
     resetTagsView()
   }
   /** 重置 Token */

@@ -1,8 +1,8 @@
-import type * as Table from './interfaces/manage'
+import type * as Interfaces from './interfaces'
 import { request } from '@/utils/service'
 
 /** 增 */
-export function createTableDataApi(data: Table.CreateOrUpdateTableRequestData) {
+export function createTableDataApi(data: Interfaces.CreateOrUpdateTableRequestData) {
   return request({
     url: 'table',
     method: 'post',
@@ -19,7 +19,7 @@ export function deleteTableDataApi(id: string) {
 }
 
 /** 改 */
-export function updateTableDataApi(data: Table.CreateOrUpdateTableRequestData) {
+export function updateTableDataApi(data: Interfaces.CreateOrUpdateTableRequestData) {
   return request({
     url: 'table',
     method: 'put',
@@ -28,12 +28,12 @@ export function updateTableDataApi(data: Table.CreateOrUpdateTableRequestData) {
 }
 
 // 获取用户列表
-export function getUserListApi(params: Table.UserListeRequestData) {
+export function getUserListApi(params: Interfaces.UserListeRequestData) {
   if (Math.random() < 0.5) {
     return new Promise<any>((resolve) => {
       // 模拟loading接口响应时间 2s
       setTimeout(() => {
-        resolve(request<Table.UserListResponseData>({
+        resolve(request<Interfaces.UserListResponseData>({
           url: 'table',
           method: 'get',
           params,
@@ -42,7 +42,7 @@ export function getUserListApi(params: Table.UserListeRequestData) {
     })
   }
   else {
-    return request<Table.UserListResponseData>({
+    return request<Interfaces.UserListResponseData>({
       url: 'table',
       method: 'get',
       params,

@@ -1,4 +1,4 @@
-import { useSettingsStore } from '@/store/modules/settings'
+import { useSettingsStore } from '@/store'
 import { computed } from 'vue'
 
 const settingsStore = useSettingsStore()

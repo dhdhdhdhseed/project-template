@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { useAppStore } from '@/store/modules/app'
-import { useSettingsStore } from '@/store/modules/settings'
+import { useAppStore, useSettingsStore } from '@/store'
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { AppMain, Logo, NavigationBar, Sidebar, TagsView } from './components'

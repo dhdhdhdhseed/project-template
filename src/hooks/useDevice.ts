@@ -1,4 +1,4 @@
-import { useAppStore } from '@/store/modules/app'
+import { useAppStore } from '@/store'
 import { computed } from 'vue'
 
 const appStore = useAppStore()

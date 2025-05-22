@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { TagView } from '@/store/modules/tags-view'
+import type { TagView } from '@/store'
 import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
 import { useRouteListener } from '@/mitt/routeListener'
 import constantRoutes from '@/router/constantRoutes'

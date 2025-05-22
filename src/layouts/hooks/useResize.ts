@@ -1,5 +1,4 @@
-import { DeviceEnum } from '@/config/constants'
-import { useRouteListener } from '@/hooks/useRouteListener'
+import { useRouteListener } from '@/mitt/routeListener'
 import { useAppStore } from '@/store/modules/app'
 import { onBeforeMount, onBeforeUnmount, onMounted } from 'vue'
 
@@ -21,13 +20,13 @@ export default () => {
   const _resizeHandler = () => {
     if (!document.hidden) {
       const isMobile = _isMobile()
-      appStore.toggleDevice(isMobile ? DeviceEnum.Mobile : DeviceEnum.Desktop)
+      appStore.toggleDevice(isMobile ? 'mobile' : 'desktop')
       isMobile && appStore.closeSidebar(true)
     }
   }
   /** 监听路由变化，根据设备类型调整布局 */
   listenerRouteChange(() => {
-    if (appStore.device === DeviceEnum.Mobile && appStore.sidebar.opened) {
+    if (appStore.device === 'mobile' && appStore.sidebar.opened) {
       appStore.closeSidebar(false)
     }
   })
@@ -40,7 +39,7 @@ export default () => {
   /** 在组件挂载后根据窗口大小判断设备类型并调整布局 */
   onMounted(() => {
     if (_isMobile()) {
-      appStore.toggleDevice(DeviceEnum.Mobile)
+      appStore.toggleDevice('mobile')
       appStore.closeSidebar(true)
     }
   })

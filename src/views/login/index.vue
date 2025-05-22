@@ -1,26 +1,18 @@
 <script lang="ts" setup>
-import type { LoginRequestData } from '@/api/login/types/login'
+import type { LoginRequestData } from '@/api/interfaces'
 import type { FormInstance, FormRules } from 'element-plus'
-import { getLoginCodeApi } from '@/api/login'
+import { getLoginCodeApi } from '@/api'
 import ThemeSwitch from '@/components/ThemeSwitch/index.vue'
 import { useUserStore } from '@/store/modules/user'
 import { Key, Loading, Lock, Picture, User } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import Owl from './components/Owl.vue'
-import { useFocus } from './hooks/useFocus'
 
 const router = useRouter()
-const { isFocus, handleBlur, handleFocus } = useFocus()
 
-/** 登录表单元素的引用 */
 const loginFormRef = ref<FormInstance | null>(null)
-
-/** 登录按钮 Loading */
 const loading = ref(false)
-/** 验证码图片 URL */
 const codeUrl = ref('')
-/** 登录表单数据 */
 const loginFormData: LoginRequestData = reactive({
   username: 'admin',
   password: '12345678',
@@ -62,7 +54,6 @@ function handleLogin() {
 function createCode() {
   // 先清空验证码的输入
   loginFormData.code = ''
-  // 获取验证码
   codeUrl.value = ''
   getLoginCodeApi().then((res) => {
     codeUrl.value = res.data
@@ -76,19 +67,21 @@ createCode()
 <template>
   <div class="login-container">
     <ThemeSwitch class="theme-switch" />
-    <!-- <Owl :close-eyes="isFocus" /> -->
     <div class="login-card">
       <div class="title">
         <img src="@/assets/layouts/logo-text-2.png">
       </div>
       <div class="content">
-        <el-form ref="loginFormRef" :model="loginFormData" :rules="loginFormRules" @keyup.enter="handleLogin">
+        <el-form
+          ref="loginFormRef"
+          :model="loginFormData"
+          :rules="loginFormRules"
+          @keyup.enter="handleLogin"
+        >
           <el-form-item prop="username">
             <el-input
               v-model.trim="loginFormData.username"
               placeholder="用户名"
-              type="text"
-              tabindex="1"
               :prefix-icon="User"
               size="large"
             />
@@ -98,20 +91,15 @@ createCode()
               v-model.trim="loginFormData.password"
               placeholder="密码"
               type="password"
-              tabindex="2"
               :prefix-icon="Lock"
               size="large"
               show-password
-              @blur="handleBlur"
-              @focus="handleFocus"
             />
           </el-form-item>
           <el-form-item prop="code">
             <el-input
               v-model.trim="loginFormData.code"
               placeholder="验证码"
-              type="text"
-              tabindex="3"
               :prefix-icon="Key"
               maxlength="7"
               size="large"
@@ -132,7 +120,12 @@ createCode()
               </template>
             </el-input>
           </el-form-item>
-          <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin">
+          <el-button
+            :loading="loading"
+            type="primary"
+            size="large"
+            @click.prevent="handleLogin"
+          >
             登 录
           </el-button>
         </el-form>

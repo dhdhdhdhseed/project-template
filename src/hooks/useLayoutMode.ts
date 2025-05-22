@@ -1,13 +1,12 @@
-import { LayoutModeEnum } from '@/config/constants'
 import { useSettingsStore } from '@/store/modules/settings'
 import { computed } from 'vue'
 
 const settingsStore = useSettingsStore()
-const isLeft = computed(() => settingsStore.layoutMode === LayoutModeEnum.Left)
-const isTop = computed(() => settingsStore.layoutMode === LayoutModeEnum.Top)
-const isLeftTop = computed(() => settingsStore.layoutMode === LayoutModeEnum.LeftTop)
+const isLeft = computed(() => settingsStore.layoutMode === 'left')
+const isTop = computed(() => settingsStore.layoutMode === 'top')
+const isLeftTop = computed(() => settingsStore.layoutMode === 'left-top')
 
-function setLayoutMode(mode: LayoutModeEnum) {
+function setLayoutMode(mode: LayoutModeType) {
   settingsStore.layoutMode = mode
 }
 

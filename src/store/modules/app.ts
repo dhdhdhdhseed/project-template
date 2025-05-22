@@ -1,4 +1,4 @@
-import { DeviceEnum, SIDEBAR_CLOSED, SIDEBAR_OPENED } from '@/config/constants'
+import { SIDEBAR_CLOSED, SIDEBAR_OPENED } from '@/config/constants'
 import { getSidebarStatus, setSidebarStatus } from '@/utils/cache/local-storage'
 import { defineStore } from 'pinia'
 import { reactive, ref, watch } from 'vue'
@@ -20,7 +20,7 @@ export const useAppStore = defineStore('app', () => {
     withoutAnimation: false,
   })
   /** 设备类型 */
-  const device = ref<DeviceEnum>(DeviceEnum.Desktop)
+  const device = ref<DeviceType>('desktop')
 
   /** 监听侧边栏 opened 状态 */
   watch(
@@ -39,7 +39,7 @@ export const useAppStore = defineStore('app', () => {
     sidebar.withoutAnimation = withoutAnimation
   }
   /** 切换设备类型 */
-  const toggleDevice = (value: DeviceEnum) => {
+  const toggleDevice = (value: DeviceType) => {
     device.value = value
   }
 

@@ -1,4 +1,3 @@
-import { LayoutModeEnum } from '@/config/constants'
 import { getConfigLayout } from '@/utils/cache/local-storage'
 
 /** 项目配置类型 */
@@ -6,7 +5,7 @@ export interface LayoutSettings {
   /** 是否显示 Settings Panel */
   showSettings: boolean
   /** 布局模式 */
-  layoutMode: LayoutModeEnum
+  layoutMode: LayoutModeType
   /** 是否显示标签栏 */
   showTagsView: boolean
   /** 是否显示 Logo */
@@ -21,8 +20,6 @@ export interface LayoutSettings {
   showThemeSwitch: boolean
   /** 是否显示全屏按钮 */
   showScreenfull: boolean
-  /** 是否显示搜索按钮 */
-  showSearchMenu: boolean
   /** 是否缓存标签栏 */
   cacheTagsView: boolean
   /** 开启系统水印 */
@@ -35,7 +32,7 @@ export interface LayoutSettings {
 
 /** 默认配置 */
 const defaultSettings: LayoutSettings = {
-  layoutMode: LayoutModeEnum.Left,
+  layoutMode: 'left',
   showSettings: true,
   showTagsView: true,
   fixedHeader: true,
@@ -44,9 +41,8 @@ const defaultSettings: LayoutSettings = {
   showNotify: true,
   showThemeSwitch: true,
   showScreenfull: true,
-  showSearchMenu: true,
   cacheTagsView: false,
-  showWatermark: true,
+  showWatermark: false,
   showGreyMode: false,
   showColorWeakness: false,
 }

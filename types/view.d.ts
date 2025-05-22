@@ -1,3 +1,8 @@
+/** LayoutModeType 布局模式 */
+type LayoutModeType = 'left' | 'left-top' | 'top'
+/** DeviceType 设备类型 */
+type DeviceType = 'desktop' | 'mobile'
+
 interface PagePar {
   pageNumber: number
   pageSize: number

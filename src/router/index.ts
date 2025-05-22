@@ -1,191 +1,76 @@
 import type { RouteRecordRaw } from 'vue-router'
-import routeSettings from '@/config/route'
-import { createRouter } from 'vue-router'
-import { flatMultiLevelRoutes, history } from './helper'
-import routes from './routes'
+import isWhiteList from '@/config/white-list'
+import { useTitle } from '@/hooks/useTitle'
+import { setRouteChange } from '@/mitt/routeListener'
+import { useUserStoreHook } from '@/store/modules/user'
+import { getToken } from '@/utils/cache/cookies'
+import { ElMessage } from 'element-plus'
+import NProgress from 'nprogress'
+import {
+  createRouter,
+  createWebHashHistory,
+  createWebHistory,
+} from 'vue-router'
+import constantRoutes from './constantRoutes'
+import 'nprogress/nprogress.css'
 
-const Layouts = () => import('@/layouts/index.vue')
+const { setTitle } = useTitle()
 
-/**
- * 常驻路由
- * 除了 redirect/403/404/login 等隐藏页面，其他页面建议设置 Name 属性
- */
-export const constantRoutes: RouteRecordRaw[] = [
-  {
-    path: '/redirect',
-    component: Layouts,
-    meta: {
-      hidden: true,
-    },
-    children: [
-      {
-        path: ':path(.*)',
-        component: () => import('@/views/redirect/index.vue'),
-      },
-    ],
-  },
-  {
-    path: '/403',
-    component: () => import('@/views/error-page/403.vue'),
-    meta: {
-      hidden: true,
-    },
-  },
-  {
-    path: '/404',
-    component: () => import('@/views/error-page/404.vue'),
-    meta: {
-      hidden: true,
-    },
-    alias: '/:pathMatch(.*)*',
-  },
-  {
-    path: '/login',
-    component: () => import('@/views/login/index.vue'),
-    meta: {
-      hidden: true, // 是否在菜单栏上隐藏
-    },
-  },
-  // ...routes,
-  {
-    path: '/',
-    component: Layouts,
-    redirect: '/dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index.vue'),
-        name: 'Dashboard',
-        meta: {
-          title: '首页',
-          svgIcon: 'dashboard',
-          affix: true,
-        },
-      },
-    ],
-  },
-  {
-    path: '/',
-    component: Layouts,
-    redirect: '/test',
-    children: [
-      {
-        path: 'test',
-        component: () => import('@/views/test/index.vue'),
-        name: 'Test',
-        meta: {
-          title: '测试页面',
-          svgIcon: 'dashboard',
-        },
-      },
-    ],
-  },
-]
-
-/**
- * 动态路由
- * 用来放置有权限 (Roles 属性) 的路由
- * 必须带有 Name 属性
- */
+NProgress.configure({ showSpinner: false })
+// 动态路由
 export const dynamicRoutes: RouteRecordRaw[] = [
-  {
-    path: '/permission',
-    component: Layouts,
-    redirect: '/permission/page',
-    name: 'Permission',
-    meta: {
-      title: '权限',
-      svgIcon: 'lock',
-      roles: ['admin', 'editor'], // 可以在根路由中设置角色
-      alwaysShow: true, // 将始终显示根菜单
-    },
-    children: [
-      {
-        path: 'page',
-        component: () => import('@/views/permission/page.vue'),
-        name: 'PagePermission',
-        meta: {
-          title: '页面级',
-          roles: ['admin'], // 或者在子导航中设置角色
-        },
-      },
-      {
-        path: 'directive',
-        component: () => import('@/views/permission/directive.vue'),
-        name: 'DirectivePermission',
-        meta: {
-          title: '按钮级', // 如果未设置角色，则表示：该页面不需要权限，但会继承根路由的角色
-        },
-      },
-    ],
-  },
-  {
-    path: '/',
-    component: Layouts,
-    redirect: '/dynamicRoutes',
-    meta: {
-      title: '动态路由',
-      svgIcon: 'menu',
-      roles: ['admin'],
-    },
-    children: [
-      {
-        path: 'errorPage',
-        component: Layouts,
-        meta: {
-          title: '错误页面',
-        },
-        children: [
-          {
-            path: '404',
-            component: () => import('@/views/error-page/404.vue'),
-            name: '404',
-            meta: {
-              title: '404页面',
-            },
-          },
-          {
-            path: '403',
-            component: () => import('@/views/error-page/403.vue'),
-            name: '403',
-            meta: {
-              title: '403页面',
-            },
-          },
-        ],
-      },
-      {
-        path: 'link',
-        meta: {
-          title: '外链',
-        },
-        children: [
-          {
-            path: 'https://juejin.cn/post/7089377403717287972',
-            component: () => { },
-            name: 'Link1',
-            meta: {
-              title: '中文文档',
-            },
-          },
-          {
-            path: 'https://juejin.cn/column/7207659644487139387',
-            component: () => { },
-            name: 'Link2',
-            meta: {
-              title: '新手教程',
-            },
-          },
-        ],
-      },
-    ],
-  },
 ]
 
 const router = createRouter({
-  history,
-  routes: routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(constantRoutes) : constantRoutes,
+  history: import.meta.env.VITE_ROUTER_HISTORY === 'hash'
+    ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH)
+    : createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
+  routes: constantRoutes,
 })
+
+// #region 路由守卫
+router.beforeEach(async (to, _from, next) => {
+  NProgress.start()
+  const userStore = useUserStoreHook()
+  const token = getToken()
+
+  // 如果没有登陆，判断是否在免登录的白名单中，如果存在，则直接进入，否则重定向到登录页面
+  if (!token) {
+    if (isWhiteList(to)) {
+      return next()
+    }
+    return next('/login')
+  }
+
+  // 如果已经登录，并准备进入 Login 页面，则重定向到主页
+  if (to.path === '/login') {
+    return next({ path: '/' })
+  }
+
+  // 如果用户已经登录并获取登录信息
+  if (userStore.username) {
+    return next()
+  }
+
+  // 等待获取用户信息后继续
+  try {
+    await userStore.getInfo()
+    next()
+  }
+  catch (err: any) {
+    // 过程中发生任何错误，都直接重置 Token，并重定向到登录页面
+    userStore.resetToken()
+    ElMessage.error(err.message || '路由守卫过程发生错误')
+    next('/login')
+  }
+})
+
+router.afterEach((to) => {
+  setRouteChange(to)
+  setTitle(to.meta.title)
+  NProgress.done()
+})
+// endregion
 
 /** 重置路由 */
 export function resetRouter() {

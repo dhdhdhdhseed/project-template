@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineExpose, reactive, ref } from 'vue'
+import { defineExpose, ref } from 'vue'
 
 const props = defineProps(['total', 'style', 'sizes', 'pageSize'])
 const emit = defineEmits(['pagination'])

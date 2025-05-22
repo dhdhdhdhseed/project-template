@@ -7,7 +7,6 @@ import router from '@/router'
 import store from '@/store'
 // core
 import { createApp } from 'vue'
-import '@/router/permission'
 // css
 import 'normalize.css'
 import 'element-plus/dist/index.css'

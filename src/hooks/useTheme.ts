@@ -19,7 +19,7 @@ const themeList: ThemeList[] = [
   {
     title: '默认',
     name: DEFAULT_THEME_NAME,
-    color: '#409EFF',
+    color: '#0b4887',
   },
   {
     title: '黑暗',
@@ -60,7 +60,7 @@ function initTheme() {
   })
 }
 // 设置主题色
-function setThemeColor(color: string = '#7587e5') {
+function setThemeColor(color: string = '#0b4887') {
   const root = document.documentElement
   root.style.setProperty('--main-color', color)
   const el = document.documentElement

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useLayoutMode } from '@/hooks/useLayoutMode'
 import { useSettingsStore } from '@/store'
 import { resetConfigLayout } from '@/utils'
 import { Refresh } from '@element-plus/icons-vue'
@@ -7,7 +6,6 @@ import { storeToRefs } from 'pinia'
 import { watchEffect } from 'vue'
 import SelectLayoutMode from './SelectLayoutMode.vue'
 
-const { isLeft } = useLayoutMode()
 const settingsStore = useSettingsStore()
 
 /** 使用 storeToRefs 将提取的属性保持其响应性 */
@@ -21,6 +19,7 @@ const {
   cacheTagsView,
   showGreyMode,
   showColorWeakness,
+  isLeft,
 } = storeToRefs(settingsStore)
 
 /** 定义 switch 设置项 */

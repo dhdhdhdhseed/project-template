@@ -3,7 +3,7 @@ import type { Ref } from 'vue'
 import { layoutSettings } from '@/config/layouts'
 import { setConfigLayout } from '@/utils/cache/local-storage'
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 type SettingsStore = {
   // 使用映射类型来遍历 layoutSettings 对象的键
@@ -39,5 +39,14 @@ export const useSettingsStore = defineStore('settingsStore', () => {
       setConfigLayout(settings)
     })
   }
-  return state
+
+  const isLeft = computed(() => state.layoutMode.value === 'left')
+  const isTop = computed(() => state.layoutMode.value === 'top')
+  const isLeftTop = computed(() => state.layoutMode.value === 'left-top')
+
+  function setLayoutMode(mode: LayoutModeType) {
+    state.layoutMode.value = mode
+  }
+
+  return { ...state, isLeft, isTop, isLeftTop, setLayoutMode }
 })

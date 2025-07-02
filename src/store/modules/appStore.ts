@@ -1,7 +1,7 @@
 import { SIDEBAR_CLOSED, SIDEBAR_OPENED } from '@/config/constants'
 import { getSidebarStatus, setSidebarStatus } from '@/utils/cache/local-storage'
 import { defineStore } from 'pinia'
-import { reactive, ref, watch } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 
 interface Sidebar {
   opened: boolean
@@ -16,11 +16,13 @@ function handleSidebarStatus(opened: boolean) {
 export const useAppStore = defineStore('appStore', () => {
   /** 侧边栏状态 */
   const sidebar: Sidebar = reactive({
-    opened: getSidebarStatus() !== SIDEBAR_CLOSED,
-    withoutAnimation: false,
+    opened: getSidebarStatus() !== SIDEBAR_CLOSED, // 展开状态
+    withoutAnimation: false, // 禁止展开动画 优化移动端初始化页面侧边栏禁用过渡效果
   })
   /** 设备类型 */
   const device = ref<DeviceType>('desktop')
+  const isMobile = computed(() => device.value === 'mobile')
+  const isDesktop = computed(() => device.value === 'desktop')
 
   /** 监听侧边栏 opened 状态 */
   watch(
@@ -43,5 +45,5 @@ export const useAppStore = defineStore('appStore', () => {
     device.value = value
   }
 
-  return { device, sidebar, toggleSidebar, closeSidebar, toggleDevice }
+  return { device, sidebar, isMobile, isDesktop, toggleSidebar, closeSidebar, toggleDevice }
 })

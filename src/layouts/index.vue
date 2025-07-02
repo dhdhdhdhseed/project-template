@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import { useDevice } from '@/hooks/useDevice'
-import { useLayoutMode } from '@/hooks/useLayoutMode'
-import { useSettingsStore } from '@/store'
+import { useAppStore, useSettingsStore } from '@/store'
 import { getCssVariableValue, setCssVariableValue } from '@/utils'
 import { storeToRefs } from 'pinia'
 import { computed, watchEffect } from 'vue'
@@ -14,10 +12,9 @@ import TopMode from './TopMode.vue'
 /** Layout 布局响应式 */
 useResize()
 
-const { isMobile } = useDevice()
-const { isLeft, isTop, isLeftTop } = useLayoutMode()
 const settingsStore = useSettingsStore()
-const { showSettings, showTagsView, showGreyMode, showColorWeakness } = storeToRefs(settingsStore)
+const appStore = useAppStore()
+const { showSettings, showTagsView, showGreyMode, showColorWeakness, isLeft, isTop, isLeftTop } = storeToRefs(settingsStore)
 
 const classes = computed(() => {
   return {
@@ -40,7 +37,7 @@ watchEffect(() => {
 <template>
   <div :class="classes">
     <!-- 左侧模式 -->
-    <LeftMode v-if="isLeft || isMobile" />
+    <LeftMode v-if="isLeft || appStore.isMobile" />
     <!-- 顶部模式 -->
     <TopMode v-else-if="isTop" />
     <!-- 混合模式 -->

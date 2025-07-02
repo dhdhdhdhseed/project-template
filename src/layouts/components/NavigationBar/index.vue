@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import Screenfull from '@/components/Screenfull/index.vue'
 import ThemeSwitch from '@/components/ThemeSwitch/index.vue'
-import { useDevice } from '@/hooks/useDevice'
-import { useLayoutMode } from '@/hooks/useLayoutMode'
 import { useAppStore, useSettingsStore, useUserStore } from '@/store'
 import { UserFilled } from '@element-plus/icons-vue'
 import { storeToRefs } from 'pinia'
@@ -11,13 +9,11 @@ import Breadcrumb from '../Breadcrumb/index.vue'
 import Hamburger from '../Hamburger/index.vue'
 import Sidebar from '../Sidebar/index.vue'
 
-const { isMobile } = useDevice()
-const { isTop } = useLayoutMode()
 const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const settingsStore = useSettingsStore()
-const { showThemeSwitch, showScreenfull } = storeToRefs(settingsStore)
+const { showThemeSwitch, showScreenfull, isTop } = storeToRefs(settingsStore)
 
 /** 切换侧边栏 */
 function toggleSidebar() {
@@ -34,13 +30,13 @@ function logout() {
 <template>
   <div class="navigation-bar">
     <Hamburger
-      v-if="!isTop || isMobile"
+      v-if="!isTop || appStore.isMobile"
       :is-active="appStore.sidebar.opened"
       class="hamburger"
       @toggle-click="toggleSidebar"
     />
-    <Breadcrumb v-if="!isTop || isMobile" class="breadcrumb" />
-    <Sidebar v-if="isTop && !isMobile" class="sidebar" />
+    <Breadcrumb v-if="!isTop || appStore.isMobile" class="breadcrumb" />
+    <Sidebar v-if="isTop && !appStore.isMobile" class="sidebar" />
     <div class="right-menu">
       <Screenfull v-if="showScreenfull" class="right-menu-item" />
       <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />

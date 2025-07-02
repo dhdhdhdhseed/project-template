@@ -1,7 +1,10 @@
 <script lang="ts" setup>
-import { useLayoutMode } from '@/hooks/useLayoutMode'
+import { useSettingsStore } from '@/store'
+import { storeToRefs } from 'pinia'
 
-const { isLeft, isTop, isLeftTop, setLayoutMode } = useLayoutMode()
+const settingsStore = useSettingsStore()
+const { isLeft, isTop, isLeftTop } = storeToRefs(settingsStore)
+const { setLayoutMode } = settingsStore
 </script>
 
 <template>

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import logoText1 from '@/assets/layouts/logo-text-1.png'
 import logoText2 from '@/assets/layouts/logo-text-2.png'
 import logo from '@/assets/layouts/logo.png'
-import { useLayoutMode } from '@/hooks/useLayoutMode'
+import { useSettingsStore } from '@/store'
+import { storeToRefs } from 'pinia'
 
 interface Props {
   collapse?: boolean
@@ -11,8 +11,8 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   collapse: true,
 })
-
-const { isLeft, isTop } = useLayoutMode()
+const settingsStore = useSettingsStore()
+const { isTop } = storeToRefs(settingsStore)
 </script>
 
 <template>
@@ -22,7 +22,7 @@ const { isLeft, isTop } = useLayoutMode()
         <img :src="logo" class="layout-logo">
       </router-link>
       <router-link v-else key="expand" to="/">
-        <img :src="!isLeft ? logoText2 : logoText1" class="layout-logo-text">
+        <img :src="logoText2" class="layout-logo-text">
       </router-link>
     </transition>
   </div>

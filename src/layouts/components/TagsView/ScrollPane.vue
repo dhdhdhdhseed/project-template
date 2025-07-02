@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import type { RouterLink } from 'vue-router'
-import Screenfull from '@/components/Screenfull/index.vue'
 import { useRouteListener } from '@/mitt/routeListener'
-import { useSettingsStore } from '@/store'
 import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
 import { ElScrollbar } from 'element-plus'
 import { nextTick, ref } from 'vue'
@@ -15,7 +13,6 @@ interface Props {
 const props = defineProps<Props>()
 
 const route = useRoute()
-const settingsStore = useSettingsStore()
 const { listenerRouteChange } = useRouteListener()
 
 /** 滚动条组件元素的引用 */
@@ -119,7 +116,6 @@ listenerRouteChange(() => {
     <el-icon class="arrow right" @click="scrollTo('right')">
       <ArrowRight />
     </el-icon>
-    <Screenfull v-if="settingsStore.showScreenfull" :content="true" class="screenfull" />
   </div>
 </template>
 

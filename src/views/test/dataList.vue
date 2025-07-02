@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { UserInfo } from '@/api/interfaces'
 import { getUserListApi } from '@/api'
+import Pagination from '@/components/Pagination/Pagination.vue'
 import SearchBar from '@/components/SearchBar/index.vue'
 import { onMounted, reactive, ref } from 'vue'
 
@@ -60,9 +61,11 @@ onMounted(() => {
 <template>
   <div v-loading="loading" class="page-data-list">
     <div>
+      <h3>搜索栏</h3>
       <SearchBar :model-value="searchFrom" :search-config="searchConfig" />
     </div>
     <div>
+      <h3>表格</h3>
       <el-table :data="tableData">
         <el-table-column prop="id" label="ID" />
         <el-table-column prop="username" label="用户名称" />
@@ -88,6 +91,11 @@ onMounted(() => {
     </div>
     <div>
       <h3>分页</h3>
+      <Pagination :total="100" />
+    </div>
+    <div>
+      <h3>全局组件 SVGICON</h3>
+      <SvgIcon name="link" />
     </div>
   </div>
 </template>

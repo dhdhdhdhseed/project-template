@@ -16,9 +16,7 @@ export interface LayoutSettings {
   showFooter: boolean
   /** 是否显示切换主题按钮 */
   showThemeSwitch: boolean
-  /** 是否显示全屏按钮 */
-  showScreenfull: boolean
-  /** 是否缓存标签栏 (用户退出登录) */
+  /** 是否缓存标签栏 (用户退出登录后不清空) */
   cacheTagsView: boolean
   /** 是否显示灰色模式 */
   showGreyMode: boolean
@@ -35,7 +33,6 @@ const defaultSettings: LayoutSettings = {
   showFooter: true,
   showLogo: true,
   showThemeSwitch: true,
-  showScreenfull: true,
   cacheTagsView: false,
   showGreyMode: false,
   showColorWeakness: false,

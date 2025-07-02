@@ -50,7 +50,7 @@ const constantRoutes: RouteRecordRaw[] = [
         name: 'Dashboard',
         meta: {
           title: '首页',
-          svgIcon: 'dashboard',
+          elIcon: 'House',
           affix: true,
         },
       },
@@ -70,7 +70,8 @@ const constantRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/test/dataList.vue'),
         name: 'dataList',
         meta: {
-          title: '数据列表',
+          title: '示例页面',
+          elIcon: 'DocumentCopy',
           keepAlive: true,
         },
       },

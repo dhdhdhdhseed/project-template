@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import Screenfull from '@/components/Screenfull/index.vue'
 import ThemeSwitch from '@/components/ThemeSwitch/index.vue'
 import { useAppStore, useSettingsStore, useUserStore } from '@/store'
 import { UserFilled } from '@element-plus/icons-vue'
@@ -13,7 +12,7 @@ const router = useRouter()
 const appStore = useAppStore()
 const userStore = useUserStore()
 const settingsStore = useSettingsStore()
-const { showThemeSwitch, showScreenfull, isTop } = storeToRefs(settingsStore)
+const { showThemeSwitch, isTop } = storeToRefs(settingsStore)
 
 /** 切换侧边栏 */
 function toggleSidebar() {
@@ -38,7 +37,6 @@ function logout() {
     <Breadcrumb v-if="!isTop || appStore.isMobile" class="breadcrumb" />
     <Sidebar v-if="isTop && !appStore.isMobile" class="sidebar" />
     <div class="right-menu">
-      <Screenfull v-if="showScreenfull" class="right-menu-item" />
       <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />
       <el-dropdown class="right-menu-item">
         <div class="right-menu-avatar">

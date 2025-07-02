@@ -11,7 +11,7 @@ import { createApp } from 'vue'
 import 'normalize.css'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
-import '@/styles/index.scss'
+import '@/styles/index.css'
 
 const app = createApp(App)
 

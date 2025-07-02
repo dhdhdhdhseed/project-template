@@ -1,6 +1,5 @@
 // 分页
 .el-pagination {
-  // 参考 Bootstrap 的响应式设计 WIDTH = 768
   @media screen and (max-width: 768px) {
     .el-pagination__total,
     .el-pagination__sizes,
@@ -13,6 +12,6 @@
 }
 
 // 按钮
-.el-button{
-    margin: 0 !important;
-}
+// .el-button{
+//     margin: 0 !important;
+// }

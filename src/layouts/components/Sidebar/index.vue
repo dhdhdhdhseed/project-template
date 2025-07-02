@@ -1,16 +1,11 @@
 <script lang="ts" setup>
 import constantRoutes from '@/router/constantRoutes'
 import { useAppStore, useSettingsStore } from '@/store'
-import { getCssVariableValue } from '@/utils'
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import Logo from '../Logo/index.vue'
 import SidebarItem from './SidebarItem.vue'
-
-const v3SidebarMenuBgColor = getCssVariableValue('--v3-sidebar-menu-bg-color')
-const v3SidebarMenuTextColor = getCssVariableValue('--v3-sidebar-menu-text-color')
-const v3SidebarMenuActiveTextColor = getCssVariableValue('--v3-sidebar-menu-active-text-color')
 
 const route = useRoute()
 const appStore = useAppStore()
@@ -28,9 +23,6 @@ const noHiddenRoutes = computed(() => constantRoutes.filter(item => !item.meta?.
 
 const isCollapse = computed(() => !appStore.sidebar.opened)
 const isLogo = computed(() => isLeft.value && settingsStore.showLogo)
-const backgroundColor = computed(() => (isLeft.value ? v3SidebarMenuBgColor : undefined))
-const textColor = computed(() => (isLeft.value ? v3SidebarMenuTextColor : undefined))
-const activeTextColor = computed(() => (isLeft.value ? v3SidebarMenuActiveTextColor : undefined))
 const sidebarMenuItemHeight = computed(() => {
   return !isTop.value ? 'var(--v3-sidebar-menu-item-height)' : 'var(--v3-navigationbar-height)'
 })
@@ -53,14 +45,11 @@ const hiddenScrollbarVerticalBar = computed(() => {
       <el-menu
         :default-active="activeMenu"
         :collapse="isCollapse && !isTop"
-        :background-color="backgroundColor"
-        :text-color="textColor"
-        :active-text-color="activeTextColor"
         :unique-opened="true"
         :collapse-transition="false"
         :mode="isTop && !appStore.isMobile ? 'horizontal' : 'vertical'"
       >
-        <SidebarItem v-for="route in noHiddenRoutes" :key="route.path" :item="route" :base-path="route.path" />
+        <SidebarItem v-for="routeItem in noHiddenRoutes" :key="routeItem.path" :item="routeItem" :base-path="routeItem.path" />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -128,14 +117,6 @@ const hiddenScrollbarVerticalBar = computed(() => {
   &.is-active,
   &:hover {
     background-color: v-bind(sidebarMenuHoverBgColor);
-  }
-}
-
-:deep(.el-sub-menu) {
-  &.is-active {
-    > .el-sub-menu__title {
-      color: v-bind(activeTextColor) !important;
-    }
   }
 }
 

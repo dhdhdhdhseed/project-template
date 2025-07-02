@@ -1,44 +1,44 @@
-/** Element Plus 相关 */
+// /** Element Plus 相关 */
 
-// 侧边栏的 item 的 popper
-.el-popper {
-  .el-menu {
-    background-color: var(--el-bg-color);
-    .el-menu-item {
-      background-color: var(--el-bg-color);
-      &.is-active,
-      &:hover {
-        background-color: var(--el-bg-color-overlay);
-        color: #ffffff;
-      }
-    }
-    .el-sub-menu__title {
-      background-color: var(--el-bg-color);
-    }
-    .el-sub-menu {
-      &.is-active {
-        > .el-sub-menu__title {
-          color: #ffffff;
-        }
-      }
-    }
-  }
-  .el-menu--horizontal {
-    border: none;
-  }
-}
+// // 侧边栏的 item 的 popper
+// .el-popper {
+//   .el-menu {
+//     background-color: var(--el-bg-color);
+//     .el-menu-item {
+//       background-color: var(--el-bg-color);
+//       &.is-active,
+//       &:hover {
+//         background-color: var(--el-bg-color-overlay);
+//         color: #ffffff;
+//       }
+//     }
+//     .el-sub-menu__title {
+//       background-color: var(--el-bg-color);
+//     }
+//     .el-sub-menu {
+//       &.is-active {
+//         > .el-sub-menu__title {
+//           color: #ffffff;
+//         }
+//       }
+//     }
+//   }
+//   .el-menu--horizontal {
+//     border: none;
+//   }
+// }
 
-// 卡片
-.el-card {
-  background-color: var(--el-bg-color);
-}
+// // 卡片
+// .el-card {
+//   background-color: var(--el-bg-color);
+// }
 
-// 表单
-.el-form{
-  background-color: var(--el-bg-color);
-}
-// 骨架框
-.el-skeleton{
-  background-color: var(--el-bg-color);
-}
+// // 表单
+// .el-form{
+//   background-color: var(--el-bg-color);
+// }
+// // 骨架框
+// .el-skeleton{
+//   background-color: var(--el-bg-color);
+// }
 

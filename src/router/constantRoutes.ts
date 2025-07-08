@@ -75,6 +75,16 @@ const constantRoutes: RouteRecordRaw[] = [
           keepAlive: true,
         },
       },
+      {
+        path: 'test',
+        component: () => import('@/views/test/test.vue'),
+        name: 'test',
+        meta: {
+          title: '测试页面',
+          elIcon: 'DocumentCopy',
+          keepAlive: true,
+        },
+      },
     ],
   },
 ]

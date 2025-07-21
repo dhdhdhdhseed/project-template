@@ -11,6 +11,7 @@ function handleChangeTheme({ clientX, clientY }: MouseEvent, themeName: ThemeNam
     Math.max(clientY, window.innerHeight - clientY),
   )
   const style = document.documentElement.style
+  // 记录鼠标位置，通过css变量设置主题切换动画
   style.setProperty('--v3-theme-x', `${clientX}px`)
   style.setProperty('--v3-theme-y', `${clientY}px`)
   style.setProperty('--v3-theme-r', `${maxRadius}px`)

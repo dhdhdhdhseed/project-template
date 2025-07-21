@@ -5,7 +5,7 @@ import Pagination from '@/components/Pagination/Pagination.vue'
 import SearchBar from '@/components/SearchBar/index.vue'
 import { onMounted, reactive, ref } from 'vue'
 
-const searchConfig = [
+const DEFAULT_SEARCH_CONFIG = [
   {
     label: '姓名',
     prop: 'name',
@@ -15,20 +15,12 @@ const searchConfig = [
     label: '性别',
     prop: 'sex',
     type: 'select',
-    options: [
-      {
-        label: '男',
-        value: '1',
-      },
-      {
-        label: '女',
-        value: '0',
-      },
-    ],
+    options: [],
   },
 ] as const
-type SearchFrom = Record<(typeof searchConfig)[number]['prop'], string>
+type SearchFrom = Record<(typeof DEFAULT_SEARCH_CONFIG)[number]['prop'], string>
 const searchFrom = reactive<Partial<SearchFrom>>({})
+const searchConfig = ref<any>([...DEFAULT_SEARCH_CONFIG])
 const loading = ref(false)
 const tableData = ref<UserInfo[]>([])
 const total = ref<number>(0)
@@ -55,6 +47,12 @@ function handleDelete(_row: UserInfo) {
 
 onMounted(() => {
   getTableData()
+  setTimeout(() => {
+    searchConfig.value[1].options = [
+      { label: '男', value: '1' },
+      { label: '女', value: '2' },
+    ]
+  }, 5000)
 })
 </script>
 

@@ -1,12 +1,5 @@
-<script lang="ts" setup>
-import { useUserStore } from '@/store'
-import Admin from './components/Admin.vue'
-import Editor from './components/Editor.vue'
-
-const userStore = useUserStore()
-const isAdmin = userStore.roles.includes('admin')
-</script>
-
 <template>
-  <component :is="isAdmin ? Admin : Editor" />
+  <div style="display: flex; justify-content: center; align-items: center;">
+    欢迎来到 Admin 界面
+  </div>
 </template>

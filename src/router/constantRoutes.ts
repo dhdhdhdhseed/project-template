@@ -63,6 +63,7 @@ const constantRoutes: RouteRecordRaw[] = [
     name: 'Test',
     meta: {
       title: '测试页面',
+      elIcon: 'DocumentCopy',
     },
     children: [
       {
@@ -71,7 +72,6 @@ const constantRoutes: RouteRecordRaw[] = [
         name: 'dataList',
         meta: {
           title: '示例页面',
-          elIcon: 'DocumentCopy',
           keepAlive: true,
         },
       },
@@ -81,7 +81,6 @@ const constantRoutes: RouteRecordRaw[] = [
         name: 'test',
         meta: {
           title: '测试页面',
-          elIcon: 'DocumentCopy',
           keepAlive: true,
         },
       },

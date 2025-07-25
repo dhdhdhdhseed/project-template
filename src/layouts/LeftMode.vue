@@ -95,6 +95,7 @@ $transition-time: 0.35s;
     background-color: var(--app-bg-color);
     box-shadow: var(--app-box-shadow-lighter);
     border-bottom: var(--app-header-border-bottom);
+    background-color: var(--el-bg-color);
   }
   // 顶部固定模式 header浮动 app-main 预留header高度
   .fixed-header {

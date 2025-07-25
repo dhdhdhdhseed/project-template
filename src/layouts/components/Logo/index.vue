@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import logoText2 from '@/assets/layouts/logo-text-2.png'
+import logoText2 from '@/assets/layouts/logo-text-1.png'
 import logo from '@/assets/layouts/logo.png'
 import { useSettingsStore } from '@/store'
 import { storeToRefs } from 'pinia'

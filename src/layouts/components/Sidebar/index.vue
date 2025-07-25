@@ -19,15 +19,21 @@ const activeMenu = computed(() => {
   } = route
   return activeMenu || path
 })
-const noHiddenRoutes = computed(() => constantRoutes.filter(item => !item.meta?.hidden))
+const noHiddenRoutes = computed(() =>
+  constantRoutes.filter(item => !item.meta?.hidden),
+)
 
 const isCollapse = computed(() => !appStore.sidebar.opened)
 const isLogo = computed(() => isLeft.value && settingsStore.showLogo)
 const sidebarMenuItemHeight = computed(() => {
-  return !isTop.value ? 'var(--v3-sidebar-menu-item-height)' : 'var(--v3-navigationbar-height)'
+  return !isTop.value
+    ? 'var(--app-sidebar-menu-item-height)'
+    : 'var(--app-nav-height)'
 })
 const sidebarMenuHoverBgColor = computed(() => {
-  return !isTop.value ? 'var(--v3-sidebar-menu-hover-bg-color)' : 'transparent'
+  return !isTop.value
+    ? 'var(--app-sidebar-menu-hover-bg-color)'
+    : 'transparent'
 })
 const tipLineWidth = computed(() => {
   return !isTop.value ? '2px' : '0px'
@@ -49,7 +55,12 @@ const hiddenScrollbarVerticalBar = computed(() => {
         :collapse-transition="false"
         :mode="isTop && !appStore.isMobile ? 'horizontal' : 'vertical'"
       >
-        <SidebarItem v-for="routeItem in noHiddenRoutes" :key="routeItem.path" :item="routeItem" :base-path="routeItem.path" />
+        <SidebarItem
+          v-for="routeItem in noHiddenRoutes"
+          :key="routeItem.path"
+          :item="routeItem"
+          :base-path="routeItem.path"
+        />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -64,24 +75,17 @@ const hiddenScrollbarVerticalBar = computed(() => {
     left: 0;
     width: v-bind(tipLineWidth);
     height: 100%;
-    background-color: var(--v3-sidebar-menu-tip-line-bg-color);
-  }
-}
-
-.has-logo {
-  .el-scrollbar {
-    // 多 1% 是为了在左侧模式时侧边栏最底部不显示 1px 左右的白色线条
-    height: calc(101% - var(--v3-header-height));
+    background-color: var(--app-sidebar-menu-tip-line-bg-color);
   }
 }
 
 .el-scrollbar {
-  // 多 1% 是为了在顶部模式时防止垂直滚动
-  height: 101%;
+  height: 100%;
   :deep(.scrollbar-wrapper) {
     // 限制水平宽度
     overflow-x: hidden !important;
     .el-scrollbar__view {
+      min-height: 100%;
       height: 100%;
     }
   }
@@ -95,6 +99,12 @@ const hiddenScrollbarVerticalBar = computed(() => {
       // 当为顶部模式时隐藏垂直滚动条
       display: v-bind(hiddenScrollbarVerticalBar);
     }
+  }
+}
+// 显示 Logo，el-scrollbar 减去 Logo 高度
+.has-logo {
+  .el-scrollbar {
+    height: calc(100% - var(--app-header-height));
   }
 }
 

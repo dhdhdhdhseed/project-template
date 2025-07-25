@@ -30,12 +30,12 @@ const { isTop } = storeToRefs(settingsStore)
 
 <style lang="scss" scoped>
 .layout-logo-container {
-  position: relative;
   width: 100%;
-  height: var(--v3-header-height);
-  line-height: var(--v3-header-height);
+  height: var(--app-header-height);
+  line-height: var(--app-header-height);
   text-align: center;
   overflow: hidden;
+  background-color: var(--app-theme-color);
   .layout-logo {
     display: none;
   }
@@ -46,8 +46,8 @@ const { isTop } = storeToRefs(settingsStore)
 }
 
 .layout-mode-top {
-  height: var(--v3-navigationbar-height);
-  line-height: var(--v3-navigationbar-height);
+  height: var(--app-nav-height);
+  line-height: var(--app-nav-height);
 }
 
 .collapse {

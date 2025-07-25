@@ -56,8 +56,6 @@ watchEffect(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "@/styles/mixins.scss";
-
 .setting-container {
   padding: 20px;
   .setting-item {
@@ -67,9 +65,6 @@ watchEffect(() => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .setting-name {
-      @extend %ellipsis;
-    }
   }
   .el-button {
     margin-top: 40px;

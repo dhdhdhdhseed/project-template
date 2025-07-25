@@ -5,12 +5,52 @@
 /* 注册多主题 */
 @import "./theme/register.scss";
 /* @import "./theme2/register.scss"; */
-/* Mixins */
-@import "./mixins.scss";
 /* View Transition */
 @import "./view-transition.scss";
 /* 自定义element plus 组件样式 */
 @import "./element-plus.scss";
+
+:root {
+  /* 默认主题色 */
+  --app-theme-color: #409eff;
+  --app-text-color: var(--el-text-color-primary);
+  --app-bg-color: var(--el-bg-color-page);
+  --app-bg-color-overlay: var(--el-bg-color-overlay);
+  --app-border-color: var(--el-border-color-lighter);
+
+  /* Layout 样式 */
+  --app-sidebar-width: 220px;
+  /* 侧边栏宽度 */
+  --app-sidebar-hide-width: 58px;
+  /* 侧边栏收起宽度 */
+  --app-sidebar-menu-item-height: 60px;
+  /* 菜单项高度 */
+  --app-sidebar-border-right: 1px solid var(--el-fill-color);
+  /* 侧边栏边框 */
+  --app-sidebar-menu-hover-bg-color: #409eff10;
+  /* 菜单项鼠标悬停背景色 */
+  --app-sidebar-menu-tip-line-bg-color: var(--el-color-primary);
+  /* 菜单项提示线颜色 */
+
+  /** TagsView 组件 */
+  --app-tags-view-height: 34px;
+  /* TagsView 高度 */
+
+  --app-nav-height: 50px;
+  /* NavigationBar 高度 */
+  --app-header-border-bottom-width: 1px;
+  /* Header 边框高度 */
+  --app-header-bg-color: var(--el-bg-color);
+  --app-header-border-bottom: var(--app-header-border-bottom-width) solid var(--el-fill-color);
+  /* Header 边框 */
+  --app-header-height: calc(var(--app-nav-height) + var(--app-tags-view-height) + var(--app-header-border-bottom-width));
+  /* Header 高度 = NavigationBar 高度 + TagsView 高度 + Header 边框高度 */
+
+  --app-box-shadow: var(--el-box-shadow);
+  --app-box-shadow-lighter: var(--el-box-shadow-lighter);
+  /* Box Shadow */
+
+}
 
 /* 业务页面几乎都应该在根元素上挂载 class="app-container"，以保持页面美观 */
 .app-container {
@@ -23,13 +63,12 @@ html {
 
 body {
   height: 100%;
-  color: var(--v3-body-text-color);
-  background-color: var(--v3-body-bg-color);
+  color: var(--app-text-color);
+  background-color: var(--app-bg-color);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial,
-    sans-serif;
-  @extend %scrollbar;
+  /* font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial,
+    sans-serif; */
 }
 
 #app {
@@ -52,4 +91,26 @@ a:hover {
 
 div:focus {
   outline: none;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 0;
+  overflow: auto
+}
+
+/* 定义滚动条轨道 内阴影+圆角 */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #F5F5F5;
+  background-color: #f0f0f0;
+}
+
+/* 定义滑块 内阴影+圆角 */
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #ccc;
+  min-height: 25px;
+  min-width: 4px;
 }

@@ -29,8 +29,6 @@ const settingsStore = useSettingsStore()
 </template>
 
 <style lang="scss" scoped>
-@import "@/styles/mixins.scss";
-
 .app-main {
   width: 100%;
   display: flex;
@@ -39,7 +37,6 @@ const settingsStore = useSettingsStore()
 .app-scrollbar {
   flex-grow: 1;
   overflow: auto;
-  @extend %scrollbar;
   display: flex;
   flex-direction: column;
   .app-container-grow {

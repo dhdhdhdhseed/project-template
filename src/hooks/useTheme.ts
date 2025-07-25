@@ -1,3 +1,4 @@
+import { getCssVariableValue, setCssVariableValue } from '@/utils'
 import { getActiveThemeName, setActiveThemeName } from '@/utils/cache/local-storage'
 import Color from 'color'
 import { ref, watchEffect } from 'vue'
@@ -72,6 +73,7 @@ function setThemeColor(color: string = '#0b4887') {
       Color(color).alpha(1 - i * 0.1).string(),
     )
   }
+  setCssVariableValue('--app-theme-color', color)
 }
 
 /** 主题 hook */

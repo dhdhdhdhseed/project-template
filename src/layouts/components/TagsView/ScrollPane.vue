@@ -71,11 +71,9 @@ function scrollTo(direction: 'left' | 'right', distance: number = translateDista
 
 /** 移动到目标位置 */
 function moveTo() {
-  const tagRefs = props.tagRefs
+  const tagRefs: any = props.tagRefs
   for (let i = 0; i < tagRefs.length; i++) {
-    // @ts-ignore
     if (route.path === tagRefs[i].$props.to.path) {
-      // @ts-ignore
       const el: HTMLElement = tagRefs[i].$el
       const offsetWidth = el.offsetWidth
       const offsetLeft = el.offsetLeft

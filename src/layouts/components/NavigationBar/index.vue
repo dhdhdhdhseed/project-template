@@ -27,17 +27,22 @@ function logout() {
 </script>
 
 <template>
-  <div class="navigation-bar">
+  <div class="layout-navigation-bar">
+    <!-- 折叠按钮 -->
     <Hamburger
       v-if="!isTop || appStore.isMobile"
       :is-active="appStore.sidebar.opened"
       class="hamburger"
       @toggle-click="toggleSidebar"
     />
+    <!-- 面包屑 -->
     <Breadcrumb v-if="!isTop || appStore.isMobile" class="breadcrumb" />
+    <!-- 顶部模式 - 侧边栏 -->
     <Sidebar v-if="isTop && !appStore.isMobile" class="sidebar" />
     <div class="right-menu">
+      <!-- 主题切换按钮 -->
       <ThemeSwitch v-if="showThemeSwitch" class="right-menu-item" />
+      <!-- 用户信息 -->
       <el-dropdown class="right-menu-item">
         <div class="right-menu-avatar">
           <el-avatar :icon="UserFilled" :size="30" />
@@ -56,10 +61,9 @@ function logout() {
 </template>
 
 <style lang="scss" scoped>
-.navigation-bar {
-  height: var(--v3-navigationbar-height);
+.layout-navigation-bar {
+  height: var(--app-nav-height);
   overflow: hidden;
-  color: var(--v3-navigationbar-text-color);
   display: flex;
   justify-content: space-between;
   .hamburger {
@@ -78,18 +82,6 @@ function logout() {
   }
   .sidebar {
     flex: 1;
-    // 设置 min-width 是为了让 Sidebar 里的 el-menu 宽度自适应
-    min-width: 0px;
-    :deep(.el-menu) {
-      background-color: transparent;
-    }
-    :deep(.el-sub-menu) {
-      &.is-active {
-        .el-sub-menu__title {
-          color: var(--el-color-primary) !important;
-        }
-      }
-    }
   }
   .right-menu {
     margin-right: 10px;

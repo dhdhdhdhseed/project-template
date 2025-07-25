@@ -37,11 +37,9 @@ const layoutClasses = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "@/styles/mixins.scss";
 $transition-time: 0.35s;
 
 .app-wrapper {
-  @extend %clearfix;
   width: 100%;
 }
 
@@ -52,7 +50,7 @@ $transition-time: 0.35s;
   width: 100%;
   display: flex;
   .logo {
-    width: var(--v3-sidebar-width);
+    width: var(--app-sidebar-width);
   }
   .content {
     flex: 1;
@@ -61,9 +59,9 @@ $transition-time: 0.35s;
 }
 
 .layout-header {
-  background-color: var(--v3-header-bg-color);
-  box-shadow: var(--v3-header-box-shadow);
-  border-bottom: var(--v3-header-border-bottom);
+  background-color: var(--app-header-bg-color);
+  box-shadow: var(--app-box-shadow-lighter);
+  border-bottom: var(--app-header-border-bottom);
 }
 
 .main-container {
@@ -72,39 +70,39 @@ $transition-time: 0.35s;
 
 .sidebar-container {
   transition: width $transition-time;
-  width: var(--v3-sidebar-width) !important;
+  width: var(--app-sidebar-width) !important;
   height: 100%;
   position: fixed;
   left: 0;
   z-index: 1001;
   overflow: hidden;
-  border-right: var(--v3-sidebar-border-right);
-  padding-top: var(--v3-navigationbar-height);
+  border-right: var(--app-sidebar-border-right);
+  padding-top: var(--app-nav-height);
 }
 
 .app-main {
   transition: padding-left $transition-time;
-  padding-top: var(--v3-navigationbar-height);
-  padding-left: var(--v3-sidebar-width);
+  padding-top: var(--app-nav-height);
+  padding-left: var(--app-sidebar-width);
   height: 100vh;
   overflow: auto;
 }
 
 .hideSidebar {
   .sidebar-container {
-    width: var(--v3-sidebar-hide-width) !important;
+    width: var(--app-sidebar-hide-width) !important;
   }
   .app-main {
-    padding-left: var(--v3-sidebar-hide-width);
+    padding-left: var(--app-sidebar-hide-width);
   }
 }
 
 .hasTagsView {
   .sidebar-container {
-    padding-top: var(--v3-header-height);
+    padding-top: var(--app-header-height);
   }
   .app-main {
-    padding-top: var(--v3-header-height);
+    padding-top: var(--app-header-height);
   }
 }
 </style>

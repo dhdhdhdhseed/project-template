@@ -1,9 +1,11 @@
 import type { RouteRecordRaw } from 'vue-router'
+import { simulatingRequests } from '@/api'
 import isWhiteList from '@/config/white-list'
 import { useTitle } from '@/hooks/useTitle'
 import { setRouteChange } from '@/mitt/routeListener'
 import { useUserStoreHook } from '@/store'
 import { getToken } from '@/utils/cache/cookies'
+import { loadingMessage } from '@/utils/loadingMessage'
 import { ElMessage } from 'element-plus'
 import NProgress from 'nprogress'
 import {
@@ -17,9 +19,7 @@ import 'nprogress/nprogress.css'
 const { setTitle } = useTitle()
 
 NProgress.configure({ showSpinner: false })
-// 动态路由
-export const dynamicRoutes: RouteRecordRaw[] = [
-]
+
 const router = createRouter({
   history: import.meta.env.VITE_ROUTER_HISTORY === 'hash'
     ? createWebHashHistory(import.meta.env.VITE_PUBLIC_PATH)
@@ -46,17 +46,22 @@ router.beforeEach(async (to, _from, next) => {
     return next({ path: '/' })
   }
 
-  // 如果用户已经登录(存在用户信息)，直接进入
-  if (userStore.username) {
-    return next()
-  }
+  // 如果已经存在网站基础数据则直接进入
+  // if (true) {
+  //   return next()
+  // }
 
-  // 等待获取用户信息后继续
+  // 等待网站基础数据后继续
+  let loading: any = null
   try {
-    await userStore.getInfo()
+    loading = loadingMessage('正在处理...')
+    await simulatingRequests(1000)
+    loading.close()
+    ElMessage.success('网站基础数据加载完成，开始跳转')
     next()
   }
   catch (err: any) {
+    loading.close()
     // 过程中发生任何错误，都直接重置 Token，并重定向到登录页面
     userStore.resetToken()
     ElMessage.error(err.message || '路由守卫过程发生错误')
@@ -69,5 +74,5 @@ router.afterEach((to) => {
   setTitle(to.meta.title)
   NProgress.done()
 })
-// endregion
+// #endregion
 export default router

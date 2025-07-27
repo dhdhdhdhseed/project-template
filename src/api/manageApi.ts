@@ -49,3 +49,16 @@ export function getUserListApi(params: Interfaces.UserListeRequestData) {
     })
   }
 }
+
+// 模拟接口响应时间 2s
+export function simulatingRequests(time: number = 2000) {
+  return new Promise<any>((resolve) => {
+    // 模拟loading接口响应时间 2s
+    setTimeout(() => {
+      resolve(request<Interfaces.UserListResponseData>({
+        url: 'users/info',
+        method: 'get',
+      }))
+    }, time)
+  })
+}

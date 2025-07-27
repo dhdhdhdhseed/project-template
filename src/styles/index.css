@@ -9,6 +9,8 @@
 @import "./view-transition.scss";
 /* 自定义element plus 组件样式 */
 @import "./element-plus.scss";
+/* 动画样式 */
+@import "./animation.scss";
 
 :root {
   /* 默认主题色 */

@@ -82,6 +82,7 @@ function logout() {
   }
   .sidebar {
     flex: 1;
+    min-width: 0; // 允许收缩
   }
   .right-menu {
     margin-right: 10px;

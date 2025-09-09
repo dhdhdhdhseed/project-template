@@ -146,75 +146,75 @@ const constantRoutes: RouteRecordRaw[] = [
       elIcon: 'DocumentCopy',
     },
   },
-  // {
-  //   path: '/list7',
-  //   component: () => import('@/views/test/dataList.vue'),
-  //   name: 'list7',
-  //   meta: {
-  //     title: '示例页面7',
-  //     keepAlive: true,
-  //     elIcon: 'DocumentCopy',
-  //   },
-  // },
-  // {
-  //   path: '/list8',
-  //   component: () => import('@/views/test/dataList.vue'),
-  //   name: 'list8',
-  //   meta: {
-  //     title: '示例页面8',
-  //     keepAlive: true,
-  //     elIcon: 'DocumentCopy',
-  //   },
-  // },
-  // {
-  //   path: '/list9',
-  //   component: () => import('@/views/test/dataList.vue'),
-  //   name: 'list9',
-  //   meta: {
-  //     title: '示例页面9',
-  //     keepAlive: true,
-  //     elIcon: 'DocumentCopy',
-  //   },
-  // },
-  // {
-  //   path: '/list10',
-  //   component: () => import('@/views/test/dataList.vue'),
-  //   name: 'list10',
-  //   meta: {
-  //     title: '示例页面10',
-  //     keepAlive: true,
-  //     elIcon: 'DocumentCopy',
-  //   },
-  // },
-  // {
-  //   path: '/list11',
-  //   component: () => import('@/views/test/dataList.vue'),
-  //   name: 'list11',
-  //   meta: {
-  //     title: '示例页面11',
-  //     keepAlive: true,
-  //     elIcon: 'DocumentCopy',
-  //   },
-  // },
-  // {
-  //   path: '/list12',
-  //   component: () => import('@/views/test/dataList.vue'),
-  //   name: 'list12',
-  //   meta: {
-  //     title: '示例页面12',
-  //     keepAlive: true,
-  //     elIcon: 'DocumentCopy',
-  //   },
-  // },
-  // {
-  //   path: '/list13',
-  //   component: () => import('@/views/test/dataList.vue'),
-  //   name: 'list13',
-  //   meta: {
-  //     title: '示例页面13',
-  //     keepAlive: true,
-  //     elIcon: 'DocumentCopy',
-  //   },
-  // },
+  {
+    path: '/list7',
+    component: () => import('@/views/test/dataList.vue'),
+    name: 'list7',
+    meta: {
+      title: '示例页面7',
+      keepAlive: true,
+      elIcon: 'DocumentCopy',
+    },
+  },
+  {
+    path: '/list8',
+    component: () => import('@/views/test/dataList.vue'),
+    name: 'list8',
+    meta: {
+      title: '示例页面8',
+      keepAlive: true,
+      elIcon: 'DocumentCopy',
+    },
+  },
+  {
+    path: '/list9',
+    component: () => import('@/views/test/dataList.vue'),
+    name: 'list9',
+    meta: {
+      title: '示例页面9',
+      keepAlive: true,
+      elIcon: 'DocumentCopy',
+    },
+  },
+  {
+    path: '/list10',
+    component: () => import('@/views/test/dataList.vue'),
+    name: 'list10',
+    meta: {
+      title: '示例页面10',
+      keepAlive: true,
+      elIcon: 'DocumentCopy',
+    },
+  },
+  {
+    path: '/list11',
+    component: () => import('@/views/test/dataList.vue'),
+    name: 'list11',
+    meta: {
+      title: '示例页面11',
+      keepAlive: true,
+      elIcon: 'DocumentCopy',
+    },
+  },
+  {
+    path: '/list12',
+    component: () => import('@/views/test/dataList.vue'),
+    name: 'list12',
+    meta: {
+      title: '示例页面12',
+      keepAlive: true,
+      elIcon: 'DocumentCopy',
+    },
+  },
+  {
+    path: '/list13',
+    component: () => import('@/views/test/dataList.vue'),
+    name: 'list13',
+    meta: {
+      title: '示例页面13',
+      keepAlive: true,
+      elIcon: 'DocumentCopy',
+    },
+  },
 ]
 export default constantRoutes

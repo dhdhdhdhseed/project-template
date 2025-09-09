@@ -98,7 +98,7 @@
         // 动态生成动画样式
         const style = document.createElement('style');
         let animationRules = '';
-        const totalDuration = Math.max(1.0, title.length * 0.3); // 确保最小3秒
+        const totalDuration = Math.max(3.0, title.length * 0.5); // 确保最小3秒
         const delayStep = totalDuration / (title.length + 2); // 计算每个字母的延迟
         
         title.split('').forEach((char, index) => {

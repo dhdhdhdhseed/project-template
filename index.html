@@ -18,7 +18,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #000;
+        background-color: #fff;
       }
 
       .loading-text-container {
@@ -47,7 +47,7 @@
 
       .letter-fill {
         display: inline-block;
-        color: white;
+        color: var(--app-theme-color);
         transform: rotateY(90deg);
         text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
         transform-origin: center;
@@ -98,7 +98,7 @@
         // 动态生成动画样式
         const style = document.createElement('style');
         let animationRules = '';
-        const totalDuration = Math.max(1.0, title.length * 0.3); // 确保最小3秒
+        const totalDuration = Math.max(1.0, title.length * 0.2); // 确保最小3秒
         const delayStep = totalDuration / (title.length + 2); // 计算每个字母的延迟
         
         title.split('').forEach((char, index) => {

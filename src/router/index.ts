@@ -55,7 +55,7 @@ router.beforeEach(async (to, _from, next) => {
   let loading: any = null
   try {
     loading = loadingMessage('正在处理...')
-    await simulatingRequests(1000)
+    await simulatingRequests(2000)
     loading.close()
     ElMessage.success('网站基础数据加载完成，开始跳转')
     next()

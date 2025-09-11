@@ -1,0 +1,60 @@
+{
+  "class": "el-table-v2__cell-text",
+  "columns": [
+    {
+      "key": "id",
+      "dataKey": "id",
+      "title": "ID",
+      "width": 400
+    },
+    {
+      "key": "username",
+      "dataKey": "username",
+      "title": "用户名",
+      "width": 400
+    },
+    {
+      "key": "email",
+      "dataKey": "email",
+      "title": "邮箱",
+      "width": 400
+    },
+    {
+      "key": "phone",
+      "dataKey": "phone",
+      "title": "手机号",
+      "width": 400
+    },
+    {
+      "key": "roles",
+      "dataKey": "roles",
+      "title": "角色",
+      "width": 400
+    },
+    {
+      "key": "createTime",
+      "dataKey": "createTime",
+      "title": "创建时间",
+      "width": 400
+    }
+  ],
+  "column": {
+    "key": "roles",
+    "dataKey": "roles",
+    "title": "角色",
+    "width": 400
+  },
+  "columnIndex": 4,
+  "cellData": "editor",
+  "isScrolling": false,
+  "rowData": {
+    "id": "230000200505288425",
+    "username": "Jason Lee",
+    "phone": "15325067525",
+    "email": "q.qwuwvm@anqwdqlcw.sn",
+    "roles": "editor",
+    "status": false,
+    "createTime": "2024-01-02 11:13:03"
+  },
+  "rowIndex": 3
+}

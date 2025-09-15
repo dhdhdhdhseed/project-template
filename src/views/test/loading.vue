@@ -3,7 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 
 const letters = 'LANMAN'.split('')
 const currentIndex = ref(0)
-const flippedIndices = ref<boolean[]>(Array.from({ length: letters.length }).fill(false))
+const flippedIndices = ref<any[]>(Array.from({ length: letters.length }).fill(false))
 const isHiding = ref(false) // 控制是显示阶段还是隐藏阶段
 let intervalId: number | null = null
 

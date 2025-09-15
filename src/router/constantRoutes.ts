@@ -93,6 +93,15 @@ const constantRoutes: RouteRecordRaw[] = [
           keepAlive: true,
         },
       },
+      {
+        path: 'test2',
+        component: () => import('@/views/test/test2.vue'),
+        name: 'test2',
+        meta: {
+          title: '测试页面2',
+          keepAlive: true,
+        },
+      },
     ],
   },
 ]
